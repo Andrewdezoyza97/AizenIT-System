@@ -2,12 +2,41 @@
 const express = require('express')
 const app = express()
 
-//mogoose connection
+//mongoose connection
 const mongoose = require('mongoose');
+mongoose.set('strictQuery', false);
 
-app.listen(9002,function check(error){
-    if(error)
-    console.log("Error...!");
+//Routes
+var routes = require('./route/routes');
+const cors = require('cors');
+ 
+app.use(cors(
+  {
+    origin: "http://localhost:4200"
+  }
+ 
+));
+ 
+app.listen(9992,function check(err)
+{
+    if(err)
+    console.log("error")
     else
-    console.log("Started Succesfully..!");
+    console.log("Started server sucessfully\n")
 });
+
+//Established Database Connection
+mongoose.connect("mongodb://localhost:27017/erp_system",{useNewUrlParser: true,  useUnifiedTopology: true },
+function checkDb(error)
+{
+    if(error)
+    {
+        console.log("Error Connecting to DB");
+    }
+    else
+    {
+        console.log("Successfully Connected to Database");
+    }
+});
+app.use(express.json());
+app.use(routes);
