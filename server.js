@@ -17,7 +17,7 @@ app.use(cors(
  
 ));
  
-app.listen(9992,function check(err)
+app.listen(9002,function check(err)
 {
     if(err)
     console.log("error")
@@ -26,12 +26,12 @@ app.listen(9992,function check(err)
 });
 
 //Established Database Connection
-mongoose.connect("mongodb://localhost:27017/erp_system",{useNewUrlParser: true,  useUnifiedTopology: true },
+mongoose.connect("mongodb://127.0.0.1:27017/erp_system",{useNewUrlParser: true,  useUnifiedTopology: true },
 function checkDb(error)
 {
     if(error)
     {
-        console.log("Error Connecting to DB");
+        console.log("Error Connecting to Database");
     }
     else
     {

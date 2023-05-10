@@ -9,10 +9,14 @@ module.exports.createUserDBService = (userDetails) => {
 
        var userModelData = new userModel();
 
-       userModelData.firstname = userDetails.firstname;
-       userModelData.lastname = userDetails.lastname;
+       userModelData.name = userDetails.name;
        userModelData.email = userDetails.email;
        userModelData.password = userDetails.password;
+       userModelData.streetaddress = userDetails.streetaddress;
+       userModelData.city = userDetails.city;
+       userModelData.region = userDetails.region;
+       userModelData.postalcode = userDetails.postalcode;
+       userModelData.usertype = userDetails.usertype;
        var encrypted = encryptor.encrypt(userDetails.password);
        userModelData.password = encrypted;
 
@@ -56,7 +60,7 @@ module.exports.loginuserDBService = (userDetails)=>
             }
             else
             {
-               reject({status: false,msg: "user Error Detailssss"});
+               reject({status: false,msg: "user Error Details"});
             }
 
          }
